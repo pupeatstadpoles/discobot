@@ -23,13 +23,13 @@ public class MyBot {
                 });
 
 
-        client.getEventDispatcher().on(MessageCreateEvent.class)
-                .map(MessageCreateEvent::getMessage)
-                .filter(message -> message.getAuthor().map(user -> !user.isBot()).orElse(false))
-                .filter(message -> message.getContent().equalsIgnoreCase("!ping"))
-                .flatMap(Message::getChannel)
-                .flatMap(channel -> channel.createMessage("Pong!"))
-                .subscribe();
+        client.getEventDispatcher().on(MessageCreateEvent.class) // listens for all MessageCreateEvents
+                .map(MessageCreateEvent::getMessage) // turns the events into messages that were sent
+                .filter(message -> message.getAuthor().map(user -> !user.isBot()).orElse(false)) //filters out bots
+                .filter(message -> message.getContent().equalsIgnoreCase("!ping")) // filters out messages that are not "!ping"
+                .flatMap(Message::getChannel) //turns it into the channel the message originally came from
+                .flatMap(channel -> channel.createMessage("Pong!")) // creates message "Pong!"
+                .subscribe(); //executes
         client.onDisconnect().block();
     }
 }
