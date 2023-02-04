@@ -10,7 +10,7 @@ import discord4j.core.object.entity.User;
 public class MyBot {
 
     public static void main(String[] args) {
-        GatewayDiscordClient client = DiscordClientBuilder.create("NTMxMzU3MDU1NDA0MjEyMjQ0.GHg5zZ.fvTEGr6AoU8J7ZHinwiIF3Xm1hUxocrGG1iS9E")
+        GatewayDiscordClient client = DiscordClientBuilder.create("TOKEN HERE")
                 .build()
                 .login()
                 .block();
